@@ -12,7 +12,7 @@ function parseTrip(trip) {
 }
 parseTrip(trip1);
 
-console.log(parseTrip(trip1));
+//console.log(parseTrip(trip1));
 //etape 2
 
 let tripsToParse = [
@@ -31,7 +31,7 @@ function parseTrip2(y) {
   return objet2;
 }
 
-console.log(parseTrip2(tripsToParse));
+//console.log(parseTrip2(tripsToParse));
 
 parseTrip2(tripsToParse);
 
@@ -45,7 +45,7 @@ function getTripsPrice(z) {
   }
   return prix;
 }
-console.log(getTripsPrice(tripsToParse));
+//console.log(getTripsPrice(tripsToParse));
 
 //etape 4
 
@@ -64,29 +64,34 @@ function checkCompatibility(tripA, tripB) {
   }
 }
 
-console.log(checkCompatibility(trip1, trip2));
+//console.log(checkCompatibility(trip1, trip2));
 
 //etape 5
 //créer un fonction findCompatibilities
 function findCompatibilities(trips) {
   //créer un tableau vide pour que plutard on puisse stocker les resusltats
   let comparaison = [];
+  // afficher tout les voyageurs et les push dans comparaison
+  // on pouvais faire aussi :
+  // comparaison.push(parseTrip2(trips)); mais la sortie n'est pas axactement celle demandée
+  let showTrips = parseTrip2(trips);
+  for (i in showTrips) {
+    comparaison.push([showTrips[i]]);
+  }
   // faire une 1 ere boucle pour pouvoir rentrer dans la fonction precedente en para2
   for (i in trips) {
     //console.log(trips[i]);
     // faire une 2 eme boucle pour pouvoir rentrer  dans la fonction precedente en para2
     for (j in trips) {
-      //console.log(trips[j]);
+      // console.log(trips[j]);
       //comparer les données avec la fonctions checkCompatibility if return true push dans le tableau []
       if (checkCompatibility(trips[i], trips[j]) === true) {
         //console.log[trips[i]];
         // push sous le bon format
-        comparaison.push([trips[i], trips[j]]);
+        comparaison.push([parseTrip(trips[i]), parseTrip(trips[j])]);
       }
     }
   }
   return comparaison;
 }
 console.log(findCompatibilities(tripsToParse));
-
-document.getElementById("plop").innerHTML = findCompatibilities(tripsToParse);
